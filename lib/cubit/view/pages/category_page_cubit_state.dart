@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:dio/dio.dart';
-import 'package:state_master/bloc/viewmodel/category_bloc/category_bloc.dart';
+import 'package:state_master/cubit/viewmodel/category_cubit/category_cubit.dart';
 import 'package:state_master/data/core/widgets/build_skeleton_widgets.dart';
 import 'package:state_master/data/core/widgets/category_card_widget.dart';
 import 'package:state_master/data/core/widgets/error_try_widgets.dart';
 
-class CategoryPageBlocState extends StatelessWidget {
-  const CategoryPageBlocState({super.key});
+class CategoryPageCubitState extends StatelessWidget {
+  const CategoryPageCubitState({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => CategoryBloc(
+      create: (_) => CategoryCubit(
         categoryRemoteRepositoryImpl:context.read(),
-      )..add(FetchCategories()),
+      )..fetchCategories(),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -27,7 +26,7 @@ class CategoryPageBlocState extends StatelessWidget {
           ),
           title: const Text("Categories"),
         ),
-        body: BlocBuilder<CategoryBloc, CategoryState>(
+        body: BlocBuilder<CategoryCubit, CategoryState>(
           builder: (context, state) {
             if (state is CategoryLoading) {
               return BuildSkeletonWidget();
@@ -37,7 +36,7 @@ class CategoryPageBlocState extends StatelessWidget {
               return ErrorTryWidget(
                 message: state.message,
                 onRetry: () {
-                  context.read<CategoryBloc>().add(FetchCategories());
+                  context.read<CategoryCubit>().fetchCategories();
                 },
               );
             }

@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:dartz/dartz.dart';
-import 'package:state_master/data/errors/failures.dart';
+import 'package:state_master/data/core/errors/failures.dart';
 import 'package:state_master/data/models/category_model.dart';
 
 abstract class CategoryRemoteRepository {

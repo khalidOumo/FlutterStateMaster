@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:state_master/Provider/view/widgets/category_card_widget.dart';
 import 'package:state_master/Provider/viewmodel/category_provider.dart';
-import 'package:state_master/bloc/views/widgets/error_try_widgets.dart';
+import 'package:state_master/data/core/widgets/build_skeleton_widgets.dart';
+import 'package:state_master/data/core/widgets/category_card_widget.dart';
+import 'package:state_master/data/core/widgets/error_try_widgets.dart';
 import 'package:state_master/data/repositories/category_remote_repository.dart';
 
 class CategoryPageProviderState extends StatelessWidget {
@@ -29,7 +30,7 @@ class CategoryPageProviderState extends StatelessWidget {
         body: Consumer<CategoryProvider>(
           builder: (context, provider, _) {
             if (provider.isLoading) {
-              return _buildSkeleton();
+              return BuildSkeletonWidget();
             }
 
             if (provider.errorMessage != null) {
@@ -59,22 +60,6 @@ class CategoryPageProviderState extends StatelessWidget {
     );
   }
 
-  Widget _buildSkeleton() {
-    return GridView.builder(
-      padding: const EdgeInsets.all(12),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: 1.0,
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-      ),
-      itemCount: 6,
-      itemBuilder: (context, _) => Container(
-        decoration: BoxDecoration(
-          color: Colors.grey.shade300,
-          borderRadius: BorderRadius.circular(12),
-        ),
-      ),
-    );
-  }
+
+
 }

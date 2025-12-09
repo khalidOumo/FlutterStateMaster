@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:state_master/Provider/view/pages/category_page_provider_state.dart';
+import 'package:state_master/Riverpod/view/pages/category_page_riverpod_state.dart';
 import 'package:state_master/bloc/views/pages/category_page_bloc_state.dart';
 
 class MyApp extends StatelessWidget {
@@ -9,9 +10,9 @@ class MyApp extends StatelessWidget {
 
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ECOMMERCE APP',
+      title: 'Master State',
       debugShowCheckedModeBanner: false,
-      home: const CategoryPageProviderState(),
+      home: const CategoryPageRiverpodState(),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:state_master/data/errors/failures.dart';
+import 'package:state_master/data/core/errors/failures.dart';
 import 'package:state_master/data/models/category_model.dart';
 import 'package:state_master/data/repositories/category_remote_repository.dart';
 //provider
@@ -14,7 +14,6 @@ class CategoryProvider extends ChangeNotifier {
   bool isLoading = false;
   String? errorMessage;
   List<CategoryModel> categories = [];
-
 
 
   Future<void> fetchCategories() async {
@@ -38,4 +37,5 @@ class CategoryProvider extends ChangeNotifier {
       },
     );
   }
+  
 }
